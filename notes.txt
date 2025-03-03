@@ -1,0 +1,214 @@
+Lesson 1-2
+--------------------------------
+MUST set up a HTTP server (or copy html file and open in Windows):
+1. cd into directory containing HTML file
+2. python3 -m http.server 8000
+3. http://localhost:8000 - this will be where the web page is hosted on
+
+Checking for errors in HTML:
+1. https://validator.w3.org/
+2. validate by file upload - upload your index.html
+	
+FAST COPY AND PASTE IN VIM:
+1. go to line you wanted to copy
+2. press y (yank)
+3. go to end line you wanted to copy
+** WORKS FOR DELETE TOO (d) **
+
+Keep in mind (doesn't necessarily matter since I have to set up an HTTP server since I'm on WSL):
+I edited bashrc to for the alias, 'start', allowing to access chrome
+
+Lesson 3 - Text Basics:
+--------------------------------
+White space collapsing - spaces won't be represented on the web page (not how you add extra spaces in HTML)
+	- use linebreaks: <br>
+	
+Block level elements vs. in-line level elements:
+
+Block level elements - every heading and paragraph starts on a new line
+	1. creates space around them (which can be formatted with CSS)
+	2. does NOT allow you to create another header or paragraph without creating a new line (essentially, you must return something
+	in block level elements)
+
+In-line level elements - opposite of block level elements; you can create a header/paragraph without creating a new line
+	examples of in-line level elements which provides emphasis on a certain line
+		1. <em> - italicizes
+		2. <strong> - bolds
+	
+HTML entities - less common text to display; typically use & to represent them
+	1. <, > symbols - HTML reads these as starting/ending tags
+		How to represent them?
+			- &gt;, &lt;
+	2. white space - &nbsp;
+	3. copyright symbol - &copy;
+	4. abbreviations - <abbr>
+		- DO NOT use this for anything that the web page itself depends on/is essential for
+			1. some screen readers/users may not be able to see the abbreviation 
+		ex. <abbr title="Mozilla Developer Network">MDN</abbr>
+	5. <address> - this provides assistive technology (screen readers, scanners) context of the text, particularly, that the text is
+		       an address
+
+Comments - <!---->
+	ex: <!-- TODO: Add more places -->
+
+How to inspect source code on browswers: CTRL-u or right-click -> inspect
+
+Lesson 4 - List Types:
+------------------------------
+List types - list items: <li></li>
+	1. ordered lists - <ol></ol>; these order list items by numerical values
+	2. unordered lists - <ul></ul>; these order lists with bullet points
+	3. description lists - <dl></dl>
+		- description term - <dt></dt>
+		- description detail - <dd></dd>
+
+Lesson 5 - Add Links:
+------------------------------
+How to link to another website:
+	1. <a></a>
+	2. use href="link_to_website" as an attribute in <a></a>
+		- absolute reference: a reference that has the FULL address for the webpage
+		- relative reference: a reference that is in the same folder that our current webpage is in (index.html)
+		- internal link: a reference to a location on the same webpage
+			1. must divide parts into sections - <section id="id_attribute"></section>; this creates the destination of the link
+			2. use an <a href="#id_attribute"></a> to link to section of the page
+			3. <a href="#"></a> - this will bring you to the top of the page
+
+Link Text Rules:
+	1. Avoid printing the full web address to the page
+	2. Avoid the phrase "this links to", "links to", etc. - we all know it is a link
+	3. Keep your link test short - exact topic, not sentences
+	4. No links should say "click here" - provides no meaning
+	
+href additional attributes:
+	1. download
+		ex. <a href="html5.png" download>HTML5 favorite icon</a>
+	2. target (opens in new tab)
+		ex. <a href="https://www.google.com/" target="_blank">Opens Google in new tab</a>
+	3. / - takes us back to root of webpage (original page)
+		ex. <a href="/">Back to Home</a>
+	
+Lesson 6 - Add Images
+--------------------------
+- You should always create a separate folder to store your image files
+
+How do we add images?
+1. <img src="" alt=""> - img element
+	- src attribute: stores the relative path of where the image is
+	- alt attribute: for assistive technology (eg. screen readers) to give them a description of the image
+		1. if the image cannot be found, anything in the alt attribute will be output onto the webpage
+	- title attribute: title=""
+		1. Allows you to see text when cursor is over image
+		2. NOT accessible to assistive technology - do not rely on it; just complementary text
+	- width/height attributes: width="size", height="size"
+		1. Now recommended to provide the width and height (CSS may change and override these values)
+		2. Cumulative override shift - the browser shifts the size of the image once it figures out the 
+		size; providing width and height prevents this from occurring and gives the browser a 'heads up' 
+		for how big an image is
+	- loading attribute: loading="" - two values: eager (default) or lazy
+		1. any image below the fold (anything below the webpage that you must scroll to), must be set to loading="lazy"
+			- allows the browser to load the image when it's about to show it
+			- used for efficiency to help pages load faster
+
+figure elements/figcaptions: NOT just for images!
+	1. <figure></figure> - NOTE: default behavior indents the figure element slightly
+	2. <figcaption></figcaption> - allows you to put text under an image specifically for an image (needed for assistive tech too)
+		- can be the first OR the last thing in the figure element
+	3. <code></code> provides a code sample displayed on the webpage
+		ex. <code>&lt;h1&gt;Hello World!&lt;/h1&gt;</code>
+
+Resources for images:
+	1. placeholder image generators to fill in areas you want to put images in without having the actual image yet
+	2. unsplash.com - licensed free images
+	3. pexels.com - licensed free images
+	4. gratisography.com - licensed free images (unique/funny pictures)
+	5. pixabay.com - licensed free images
+	6. irfanview.com - cropping/editing image software
+	7. canva.com - I use it already!
+	8. tinypng.com or tinyjpg.com - compresses images so they load faster onto the webpage
+
+Lesson 7 - Semantic Tags
+--------------------------
+How do we achieve document organization?
+	- Using semantics
+
+Hierarchy in our HTML page:
+	1. <h1> - represents our top level header of the page
+	2. <h2> - one level below <h1>
+	3. <h3> - one level below <h2>
+	4. etc.
+	
+Tip: try to avoid more than 3 headings on a page
+
+Why would we want to write semantic HTML?
+	- to be able to easily see and read sections of the page
+
+More examples of semantic elements:
+	1. <hr> - represents a break between two topics aka, a topic change
+	2. <nav> - represents the navigation portion of the webpage (where different sections of the webpage are listed)
+		1. can use more than one <nav>, so we can provide an attribute to tell which <nav> is which
+			- aria-label=""
+			- <nav aria-labelledby="some_label">
+			  <h2 id="some_label">some label</h2>
+	3. <li> - represents a list
+
+What does semantic mean?
+	- provides meaning
+	- in HTML, provides meaning to our elements and gives information to assistive technology like screen readers
+
+Outlining our page:
+	1. <header></header> - our top level header (where <h1> usually goes)
+	2. <main></main> - only one main element per page; represents our topic sections
+	3. <footer></footer> - can have more than one per page; represents the end of our page
+
+<article> instead of <section> elements:
+	- articles have their OWN topic, while sections are really only parts of a certain topic (generic topic)
+
+Additional semantic elements:
+	1. <aside></aside>
+		- complementary text that is not as important as the text in the main section/article
+	2. <details></details>
+	3. <summary></summary> 
+		- both <details> and <summary> work together (think of it like a arrow drop down/quiz question and click to answer)
+	4. <mark></mark> - highlights text; an in-line element not a block element
+		- remember, in-line elements modify text without creating a newline, block elements create a new line!
+	5. <time datetime="08:00"></time> - provides more semantics for screen readers
+		- <time datetime="PT3H">3 hours</time> - example specifying time in hours instead
+
+Things to avoid (for now - can use during CSS)
+	- <div></div> - no semantic meaning by themselves; represents a section without meaning (stands for a divider)
+		- a block element
+	- <span></span> - no semantic meaning by themselves
+	- Use these when we exhaust all our options that HAVE semantic meaning
+
+*Use HTML5 Outliner Chrome extension to view your webpage's outline*
+
+Lesson 8 - Create Tables
+-------------------------
+Tables - data made up with rows and columns
+	1. don't want to use a table for the entire webpage's layout
+
+How to make a table:
+	1. <table></table>
+	2. <tr></tr> - table row
+	3. <td></td> - table data
+		- colspan="2"; an example of an attribute that takes up the spaces of two columns
+		- rowspan="2"; takes up the spaces of two rows
+
+Table is different from other elements because it only expands to contain the content of the table
+
+How to label columns:
+	1. Table headers - <th></th>
+		- default: centered and bold
+
+Table Semantics: use <caption>description of table</caption>
+	- not only does this give meaning to the table, but also provides text of the description on the webpage of the table
+	- <thead></thead> - semantic element to show head of the table (your first row elements)
+	- <tbody></tbody> - semantic element to show body of the table (everything below your table head)
+	- <tfoot></tfoot> - semantic element to show footer of the table (everything below table body)
+
+Adding headings to rows/columns: <th>description of row/column</th>; put these above each <tr></tr> (table row element)
+	- <th>&nbsp;</th> - adds small space
+	- <th>My Morning Routine</th> - example of a heading to a row/column
+	- Remember, in each table heading (<th>), provide a scope to describe the table heading
+		ex. <th scope="col">Time</th>
