@@ -212,3 +212,71 @@ Adding headings to rows/columns: <th>description of row/column</th>; put these a
 	- <th>My Morning Routine</th> - example of a heading to a row/column
 	- Remember, in each table heading (<th>), provide a scope to describe the table heading
 		ex. <th scope="col">Time</th>
+
+Lesson 9 - Forms & Inputs
+--------------------------
+Creating forms and inputs:
+	1. <form action="" method=""></form> - creates the overall form
+	2. <label for=""</label> creates a label box for each box to be created within it
+	3. <input type="" name="" id="" placeholder="" autocomplete="" required autofocus pattern="" min="" max="" step="" value="">
+		- example of a box to be put within the label: this is an input box
+		1. name attribute is what the server takes for input
+		2. placeholder attribute is an example of whatever is in the input box
+		3. autocomplete attribute is an on/off - will autocomplete whatever has been put in the input box already
+		4. required attribute is a true/false (automatically is true) and will make it so the input box is required
+		5. autofocus attribute can only be set to one input at all times on the page - puts the cursor into the input box
+		6. can have type="text", type="password", type="tel", type="number", type="radio", type="checkbox", type="message", etc.
+			- if on a phone on a website, type="tel" brings up the numeric keypad to enter a phone number (cool)
+			- radio gives you a bulleted selection box
+				- note: make sure name attribute value of each option is the same UNLESS 
+				you want to be able to select multiple options
+			- checkbox gives you an actual section for checking multiple boxes with a check
+			- message gives you a section to send a message to someone
+				- use <textarea name="message" id="message" cols="30" rows="10" placeholder="anything"</textarea>
+					1. cols and rows shows how big the text box to be for the user
+		7. pattern attribute allows you to set regular expressions
+		8. min, max attributes are minimum/maximum values you can input
+		9. step attribute represents the number to increment by
+		10. value attribute represents number to start within the input box
+
+Selection boxes:
+Option 1:
+	<select name="" id="" size="" multiple>
+		<optgroup label=""> -> labels each group of options
+			<option value =""></option> -> what the user sees
+				- includes selected attribute: what the default option will show to the user
+		</optgroup>
+	</select>
+
+	1. size attribute: how many from the list will display at once (hold ctrl then select for user)
+	2. multiple attribute: select multiple options - no longer a 'tab-like' feature - will display in a scrollable table
+
+Option 2:
+	<input type="text" name="" id="" list="list-name">
+		<datalist id="list-name">
+			<option value="option 1">
+		</datalist>
+
+What are fieldsets?
+	- an organized way to format the form to describe what each section of the form is about
+		1. <fieldset></fieldset>
+	
+What are legends?
+	- a way to specify what we are requesting in a particular section of the form
+		1. <legend></legend>
+			- this sections off the portion of the form within the fieldset
+
+**NOTE - make sure ANYWHERE within your form, we should not have multiple id's, all must be UNIQUE**
+
+Submitting forms:
+	1. <button type="submit>name of button</button>
+		- can type in more things other than text
+		- can have more than 1 submit button per page
+		- alternative: <button type="submit" formaction="url_to_website" formmethod="post" (instead of get)></button>
+			1. difference between a get and post request
+				- get requests shows ALL information inside the url
+					1. don't send sensitive information with get requests
+				- post requests does NOT show information inside the url
+	2. <input type="submit" value="">
+		- alternative way to create a submit button - takes in a text value, though
+	3. Button for reset: <button type="reset">name of button</button>
