@@ -269,7 +269,7 @@ What are legends?
 **NOTE - make sure ANYWHERE within your form, we should not have multiple id's, all must be UNIQUE**
 
 Submitting forms:
-	1. <button type="submit>name of button</button>
+	1. <button type="submit">name of button</button>
 		- can type in more things other than text
 		- can have more than 1 submit button per page
 		- alternative: <button type="submit" formaction="url_to_website" formmethod="post" (instead of get)></button>
